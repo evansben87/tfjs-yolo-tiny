@@ -1,30 +1,32 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
+  context: path.resolve(__dirname, "src"),
   entry: {
-    index: ['./index.js'],
+    index: ["./index.js"],
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    library: 'remoteRequire',
-    libraryTarget: 'umd',
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js",
+    library: "remoteRequire",
+    libraryTarget: "umd",
   },
   module: {
     rules: [
       {
         test: /\.js$/i,
         exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-          options: { presets: ['env'] },
-        }],
+        use: [
+          {
+            loader: "babel-loader",
+            options: { presets: ["@babel/preset-env"] },
+          },
+        ],
       },
     ],
   },
   externals: {
-    '@tensorflow/tfjs': '@tensorflow/tfjs',
+    "@tensorflow/tfjs": "@tensorflow/tfjs",
   },
 };
